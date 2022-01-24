@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import { BrowserRouter as Router, useParams } from 'react-router-dom'
+import { ThemeProvider, Box, Typography } from '@mui/material'
+import { theme } from './themes'
+import { RenderPage } from './routes/index.routes'
+import './style.css'
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          overflow: 'auto',
+          height: '100vh',
+          padding: '60px 0 0 0 ',
+        }}
+      >
+        <Typography variant="h1" textAlign="center" my="50px">
+          Todo List
+        </Typography>
 
-export default App;
+        <Router>
+          <RenderPage />
+        </Router>
+      </Box>
+    </ThemeProvider>
+  )
+}
+export default App
